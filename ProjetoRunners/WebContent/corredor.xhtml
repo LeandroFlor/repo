@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head> 
+<h:body>
+<h:form> 
+	<h:inputHidden value="#{corredorBean.corredor.id}"/>
+	<h:panelGrid columns="4">
+	<h:outputLabel value="Nome:" />
+	<h:inputText value="#{corredorBean.corredor.nome}"></h:inputText>
+	
+	<h:outputLabel value="Cidade:" />
+	<h:inputText value="#{corredorBean.corredor.cidade}"></h:inputText>
+	
+	<h:outputLabel value="Estado:" />
+	<h:inputText value="#{corredorBean.corredor.estado}"></h:inputText>
+	
+	<h:outputLabel value="Data de Nascimento:" />
+	<p:calendar value="#{corredorBean.corredor.dataNascimento}"></p:calendar>
+	
+	<h:commandButton value="salvar" action="#{corredorBean.salvar}"/>
+	</h:panelGrid>
+	
+	<h:dataTable value="#{corredorBean.listaCorredores}" var="corredor">
+	<h:column>
+	<f:facet name="header">Código do corredor</f:facet> 
+		#{corredor.id}
+	</h:column>
+	<h:column>
+	<f:facet name="header">Nome</f:facet> 
+		#{corredor.nome}
+	</h:column>
+	<h:column>
+	<f:facet name="header">Nascimento</f:facet> 
+		#{corredor.dataNascimento}
+	</h:column>
+	<h:column>
+	<f:facet name="header">Cidade</f:facet> 
+		#{corredor.cidade}
+	</h:column>
+	<h:column>
+	<f:facet name="header">Estado</f:facet> 
+		#{corredor.estado}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Atualizar</f:facet>
+		<h:commandButton value="Atualizar">
+			<f:setPropertyActionListener target="#{corredorBean.corredor}" value="#{corredor}"></f:setPropertyActionListener>
+		</h:commandButton>
+	</h:column>
+	</h:dataTable>
+	
+	<h:link value="Voltar" outcome="index.jsf"></h:link>
+	
+</h:form>
+</h:body> 
+</html>

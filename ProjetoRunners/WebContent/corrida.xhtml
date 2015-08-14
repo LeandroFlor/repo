@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head> 
+<h:body>
+<h:form> 
+	
+	<h:inputHidden value="#{corridaBean.corrida.id}" />
+	<h:panelGrid columns="4">
+	<h:outputLabel value="Nome:" />
+	<h:inputText value="#{corridaBean.corrida.nome}"></h:inputText>
+	
+	<h:outputLabel value="Cidade:" />
+	<h:inputText value="#{corridaBean.corrida.cidade}"></h:inputText>
+	
+	<h:outputLabel value="Estado:" />
+	<h:inputText value="#{corridaBean.corrida.estado}"></h:inputText>
+	
+	<h:outputLabel value="Data:" />
+	<h:inputText value="#{corridaBean.corrida.data}"></h:inputText>
+	
+	<h:outputLabel value="Descrição:" />
+	<h:inputText value="#{corridaBean.corrida.descricao}"></h:inputText>
+	
+	<h:outputLabel value="Valor:" />
+	<h:inputText value="#{corridaBean.corrida.valor}"></h:inputText>
+	
+	<h:outputLabel value="Status:" />
+	<h:selectOneMenu value="#{corridaBean.corrida.status}">
+		<f:selectItem  itemLabel="Selecione um Status" itemValue="" />
+		<f:selectItem  itemLabel="Agendada" itemValue="Agendada" />
+		<f:selectItem  itemLabel="Cancelada" itemValue="Cancelada" />
+	</h:selectOneMenu>
+	
+	<h:commandButton value="salvar" action="#{corridaBean.salvar}"/>
+	</h:panelGrid>
+	
+	<h:dataTable value="#{corridaBean.listaCorridas}" var="corrida">
+	<h:column>
+		<f:facet name="header">Id</f:facet>
+		#{corrida.id}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Nome</f:facet>
+		#{corrida.nome}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Data</f:facet>
+		#{corrida.data}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Cidade</f:facet>
+		#{corrida.cidade}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Estado</f:facet>
+		#{corrida.estado}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Descrição</f:facet>
+		#{corrida.descricao}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Valor</f:facet>
+		#{corrida.valor}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Status</f:facet>
+		#{corrida.status}
+	</h:column>
+	<h:column>
+		<f:facet name="header">Atualizar</f:facet>
+		<h:commandButton value="Atualizar">
+			<f:setPropertyActionListener target="#{corridaBean.corrida}" value="#{corrida}"></f:setPropertyActionListener>
+		</h:commandButton>
+	</h:column>
+	</h:dataTable>
+	
+	<h:link value="Voltar" outcome="index.jsf"></h:link>
+</h:form>
+</h:body> 
+</html>
